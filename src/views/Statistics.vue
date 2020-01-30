@@ -1,8 +1,7 @@
 <template>
-  <div class="about">
-    <h1>This is an statistics page</h1>
-    <Nav/>
-  </div>
+  <Layout>
+    <p>Statistics</p>
+  </Layout>
 </template>
 
 <script lang="ts">
