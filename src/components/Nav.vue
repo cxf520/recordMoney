@@ -1,15 +1,15 @@
 <template>
     <nav>
-        <router-link class="item" to="/money" active-class="selected">
-            <Icon name="money" />
+        <router-link to="/money" class="item" active-class="selected">
+            <Icon name="money"/>
             记账
         </router-link>
-        <router-link class="item" to="/labels" active-class="selected">
-            <Icon name="label" />
+        <router-link to="/labels" class="item" active-class="selected">
+            <Icon name="label"/>
             标签
         </router-link>
-        <router-link class="item" to="/statistics" active-class="selected">
-            <Icon name="statistic" />
+        <router-link to="/statistics" class="item" active-class="selected">
+            <Icon name="statistics"/>
             统计
         </router-link>
     </nav>
@@ -17,32 +17,31 @@
 
 <script lang="ts">
     export default {
-        name: "Nav"
-    }
+        name: 'Nav'
+    };
 </script>
 
-
 <style lang="scss" scoped>
-@import "~@/assets/style/helper.scss";
-nav{
-    display: flex;
-    flex-direction: row;
-    font-size: 14px;
-    box-shadow: 0 0 3px rgba(0,0,0,0.3);
-    >.item{
-        padding: 4px 0;
-        width: 33.3333%;
+    @import "~@/assets/style/helper.scss";
+    nav {
+        @extend %outerShadow;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        .icon{
-            width: 26px;
-            height: 26px;
+        flex-direction: row;
+        font-size: 12px;
+        > .item {
+            padding: 2px 0;
+            width: 33.33333%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            .icon {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        > .item.selected{
+            color: $color-highlight;
         }
     }
-    .selected{
-        color: $red;
-    }
-}
 </style>
