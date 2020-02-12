@@ -1,10 +1,7 @@
 <template>
     <label class="notes">
-        <span class="name">{{value}}备注</span>
-        <input type="text"
-               :value = 'value'
-               @input="changeInput"
-               placeholder="在这里输入备注">
+        <span class="name">备注</span>
+        <input type="text" v-model = "value" placeholder="在这里输入备注">
     </label>
 </template>
 
@@ -14,10 +11,6 @@
     @Component
     export default class Notes extends Vue{
         value = '';
-        changeInput(event:KeyboardEvent){
-            const input = event.target as HTMLInputElement;
-            this.value = input.value;
-        }
     }
 </script>
 
