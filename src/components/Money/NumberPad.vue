@@ -25,15 +25,18 @@ import Vue from "vue";
 import { Component, Prop } from "vue-property-decorator";
 @Component
 export default class NumberPad extends Vue {
-  output:string = "";
+  output:string = '0';
   inputContent(event:MouseEvent) {//event是个对象，鼠标事件
     const button = (event.target as HTMLButtonElement);//强制定义类型(vue和typescript结合的不够好)
     const input = button.innerText as string ;//可以简写‘！’，意思时排除空这种情况
     if(this.output.length === 16 ){return;}
     if(this.output === '0'){
-      if( '0123456789'.indexOf(input) >=0 ){
+      if('0123456789'.indexOf(input) >=0){
         this.output = input;
+      }else{
+        this.output += button.innerText;
       }
+      return
     }
     if(this.output.indexOf('.')>=0 && input ==='.'){return;}
     this.output += button.innerText;
@@ -49,6 +52,7 @@ export default class NumberPad extends Vue {
     }
   }
   ok(){
+    this.$emit('update:value',this.output);
   }
 }
 </script>

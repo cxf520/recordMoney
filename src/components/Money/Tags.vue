@@ -5,8 +5,8 @@
         </div>
         <ul class="current">
             <li v-for="(tag,index) in dataSource" :key="index"
-                :class = "{selected:tag === selectTags }"
-                @click = "select(tag)"
+                :class = "{selected:selectTags.indexOf(tag)>=0 }"
+                @click = "toggle(tag)"
             >{{tag}}</li>
         </ul>
     </div>
@@ -18,10 +18,15 @@
     @Component
     export default class Tags extends Vue {
         @Prop() readonly dataSource : string[] | undefined;
-        selectTags:string = '衣';
-        select(tag:string){
-            console.log(tag);
-            this.selectTags = tag
+        selectTags:string[] = [];
+        toggle(tag:string){
+            const index = this.selectTags.indexOf(tag);
+            if(index>0){
+                this.selectTags.splice(index,1)
+            }else{
+                this.selectTags.push(tag)
+            }
+            this.$emit('update:value',this.selectTags)
         }
         create(){
             const name = window.prompt('请输入标签名');
