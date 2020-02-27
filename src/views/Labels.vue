@@ -6,7 +6,9 @@
         <Icon name="right"/>
       </li>
     </ol>
-    <button class="createTag" @click="createTag">新建标签</button>
+    <div class="createTag-wrapper">
+      <button class="createTag" @click="createTag">新建标签</button>
+    </div>
   </Layout>
 </template>
 
