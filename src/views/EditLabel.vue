@@ -5,6 +5,9 @@
             <span>编辑标签</span>
         </div>
         <FormItem field-name="标签名" placeholder="请输入标签名"/>
+        <div class="button-wrapper">
+            <Button>删除标签</Button>
+        </div>
     </Layout>
 </template>
 
@@ -13,8 +16,9 @@
     import {Component} from 'vue-property-decorator'
     import {tagListModel} from "@/model/tagsModel";
     import FormItem from "@/components/Money/FormItem.vue";
+    import Button from "@/components/Button.vue";
     @Component({
-        components: {FormItem}
+        components: {Button, FormItem}
     })
     export default class EditLabel extends Vue{
         created(){
@@ -32,4 +36,9 @@
 </script>
 
 <style lang="scss" scoped>
+    .button-wrapper {
+        text-align: center;
+        padding: 16px;
+        margin-top: 44-16px;
+    }
 </style>
