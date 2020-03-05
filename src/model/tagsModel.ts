@@ -25,13 +25,12 @@ const tagListModel:TagsListModel = {
         return 'success';
     },
     update(id,name){
-        const idList = this.data.map(item => item.id);
-        if(idList.indexOf(id)>=0){
+        const tag = this.data.filter(item => item.id === id )[0];
+        if(tag){
             const names = this.data.map(item => item.name);
             if(names.indexOf(name)>=0){
                 return 'duplicated';
-            }else {
-                const tag = this.data.filter(item => item.id === id )[0];
+            }else{
                 tag.name = name;
                 this.save();
                 return 'success'
