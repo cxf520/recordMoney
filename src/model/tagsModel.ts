@@ -32,7 +32,7 @@ const tagListModel:TagsListModel = {
             if(names.indexOf(name)>=0){
                 return 'duplicated';
             }else{
-                tag.name = name;
+                tag.id = tag.name = name;
                 this.save();
                 return 'success'
             }
