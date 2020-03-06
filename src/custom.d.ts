@@ -20,4 +20,5 @@ type TagsListModel ={
 //window添加属性
 interface Window{
     tagList:Tag[]
+    createTag:(name:string)=>void
 }
