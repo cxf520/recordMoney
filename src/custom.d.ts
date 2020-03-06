@@ -19,6 +19,8 @@ type TagsListModel ={
 }
 //window添加属性
 interface Window{
+    recordList:RecordItem[]
+    createRecord:(record:RecordItem)=>void
     tagList:Tag[]
     createTag:(name:string)=>void
     findTag:(id:string)=>Tag | undefined
