@@ -18,12 +18,4 @@ type TagsListModel ={
     save:()=> void
 }
 //window添加属性
-interface Window{
-    recordList:RecordItem[]
-    createRecord:(record:RecordItem)=>void
-    tagList:Tag[]
-    createTag:(name:string)=>void
-    findTag:(id:string)=>Tag | undefined
-    removeTag:(id:string)=>boolean
-    updateTag:TagsListModel['update']
-}
+interface Window{}
