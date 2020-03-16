@@ -14,10 +14,12 @@
     import FormItem from '@/components/Money/FormItem.vue';
     import Tags from '@/components/Money/Tags.vue';
     import {Component} from 'vue-property-decorator'
-    // import oldStore from "@/store/index2";
     @Component({
         components: {Tags, FormItem, Types, NumberPad},
         computed:{
+            recordList(){
+                return this.$store.commit('recordList')
+            }
         }
     })
     export default class Money extends Vue {
