@@ -4,12 +4,17 @@ import clone from "@/lib/clone.";
 import createId from "@/lib/createId";
 
 Vue.use(Vuex);
-
+type RootState = {
+  recordList:RecordItem[],
+  tagList:Tag[],
+  currentTag?:Tag
+}
 const store = new Vuex.Store({
   state: {
-    recordList: [] as RecordItem[],
-    tagList: []as Tag[]
-  },
+    recordList: [],
+    tagList: [],
+    currentTag:undefined
+  }as RootState,
   mutations: {
     fetchRecord(state){
       state.recordList= JSON.parse(window.localStorage.getItem('recordList')||'[]') as RecordItem[] ;
@@ -41,8 +46,8 @@ const store = new Vuex.Store({
     saveTabs(state){
       window.localStorage.setItem('tagsList',JSON.stringify(state.tagList))
     },
-    findTag(state,id: string) {
-      return state.tagList.filter(t => t.id === id)[0];
+    setCurrentTag(state,id:string){
+      state.currentTag = state.tagList.filter(t => t.id === id)[0];
     },
     removeTag(state,id: string){
       let index = -1;
