@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import clone from "@/lib/clone.";
 import createId from "@/lib/createId";
+import router from "@/router";
 
 Vue.use(Vuex);
 type RootState = {
@@ -49,6 +50,22 @@ const store = new Vuex.Store({
     setCurrentTag(state,id:string){
       state.currentTag = state.tagList.filter(t => t.id === id)[0];
     },
+    updateTag(state, payload:{id: string, name: string}){
+      const {id,name} = payload;
+      const tag = state.tagList.filter(item => item.id === id )[0];
+        if(tag){
+          const names = state.tagList.map(item => item.name);
+          if(names.indexOf(name)>=0){
+              return 'duplicated';
+          }else{
+              tag.id = tag.name = name;
+              store.commit('saveTabs');
+              return 'success'
+          }
+        }else{
+            return 'not found'
+        }
+    },
     removeTag(state,id: string){
       let index = -1;
       for(let i=0; i<state.tagList.length; i++){
@@ -57,9 +74,13 @@ const store = new Vuex.Store({
           break;
         }
       }
-      state.tagList.splice(index,1);
-      store.commit('saveTabs');
-      return true
+      if(index>=0){
+        state.tagList.splice(index,1);
+        store.commit('saveTabs');
+        router.back()
+      }else{
+        window.alert('删除失败')
+      }
     }
   }
 });
